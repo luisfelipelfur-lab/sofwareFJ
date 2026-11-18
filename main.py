@@ -1,4 +1,7 @@
-# ===== SECCIÓN 7: MENÚ INTERACTIVO =====
+from excepciones import RUTA_LOG, log, DatoInvalidoError
+from modelos import ReservaSala, AlquilerEquipo, Asesoria
+from sistema import SoftwareFJ, simulacion
+
 MENU = """
 ============ SOFTWARE FJ ============
 1. Registrar cliente
@@ -19,7 +22,6 @@ def pedir(texto):
 
 
 def numero(texto, campo):
-    """Convierte texto a número; si no es válido lanza una excepción propia."""
     try:
         valor = float(texto.replace(",", "."))
     except ValueError as e:
@@ -36,7 +38,6 @@ def listar(titulo, lista):
 
 
 def elegir(lista, nombre):
-    """Muestra una lista numerada y devuelve el elemento que escoja el usuario."""
     if not lista:
         raise DatoInvalidoError(f"No hay {nombre} registrados")
     listar(nombre.capitalize(), lista)
